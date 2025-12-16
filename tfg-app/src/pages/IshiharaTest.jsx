@@ -35,9 +35,10 @@ export default function IshiharaTest() {
       setIndex(next);
     } else {
       const total = plates.length;
-      const finalCorrect = value === current.correctValue
-        ? correctAnswers + 1
-        : correctAnswers;
+      const finalCorrect =
+        value === current.correctValue
+          ? correctAnswers + 1
+          : correctAnswers;
 
       const percentage = Math.round((finalCorrect / total) * 100);
 
@@ -54,44 +55,103 @@ export default function IshiharaTest() {
   const currentPlate = plates[index];
 
   return (
-    <div style={{ textAlign: "center", padding: 20 }}>
-
-      {/* Botón volver */}
-      <div style={{ textAlign: "left" }}>
-        <Link to="/">
-          <button style={{ padding: "8px 15px", marginBottom: 10 }}>
-            Volver
-          </button>
-        </Link>
-      </div>
-
-      <h2>Test de Ishihara</h2>
-
-      <img
-        src={currentPlate.image}
-        alt="Placa Ishihara"
-        style={{ width: 250, marginBottom: 20 }}
-      />
-
-      <h3>¿Qué número ves?</h3>
-
-      <div style={{ display: "flex", justifyContent: "center", gap: 10 }}>
-        {[currentPlate.correctValue, 0, 99]
-          .sort(() => Math.random() - 0.5)
-          .map((opt, i) => (
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "#1c1c1c",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 20,
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: 420,
+          background: "#f5f5f5",
+          padding: 25,
+          borderRadius: 12,
+          boxShadow: "0px 0px 20px rgba(0,0,0,0.4)",
+          textAlign: "center",
+          fontFamily: "Arial",
+        }}
+      >
+        {/* Botón volver */}
+        <div style={{ textAlign: "left" }}>
+          <Link to="/">
             <button
-              key={i}
-              onClick={() => handleAnswer(opt)}
-              style={{ padding: "10px 20px", cursor: "pointer" }}
+              style={{
+                padding: "8px 15px",
+                background: "#333",
+                color: "white",
+                border: "none",
+                borderRadius: 8,
+                cursor: "pointer",
+                marginBottom: 15,
+              }}
             >
-              {opt}
+              Volver
             </button>
-          ))}
-      </div>
+          </Link>
+        </div>
 
-      <p style={{ marginTop: 20 }}>
-        Placa {index + 1} de {plates.length}
-      </p>
+        <h2 style={{ marginTop: 0 }}>Test de Ishihara</h2>
+
+        {/* Imagen */}
+        <img
+          src={currentPlate.image}
+          alt="Placa Ishihara"
+          style={{
+            width: 260,
+            borderRadius: 10,
+            border: "2px solid #ddd",
+            marginTop: 10,
+          }}
+        />
+
+        <h3 style={{ marginTop: 20 }}>¿Qué número ves?</h3>
+
+        {/* Opciones */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 15,
+            marginTop: 15,
+          }}
+        >
+          {[currentPlate.correctValue, 0, 99]
+            .sort(() => Math.random() - 0.5)
+            .map((opt, i) => (
+              <button
+                key={i}
+                onClick={() => handleAnswer(opt)}
+                style={{
+                  padding: "12px 20px",
+                  background: "#e0e0e0",
+                  border: "none",
+                  borderRadius: 10,
+                  cursor: "pointer",
+                  fontSize: 16,
+                  transition: "0.2s",
+                }}
+                onMouseEnter={(e) =>
+                  (e.target.style.background = "#d0d0d0")
+                }
+                onMouseLeave={(e) =>
+                  (e.target.style.background = "#e0e0e0")
+                }
+              >
+                {opt}
+              </button>
+            ))}
+        </div>
+
+        <p style={{ marginTop: 20, opacity: 0.7 }}>
+          Placa {index + 1} de {plates.length}
+        </p>
+      </div>
     </div>
   );
 }
