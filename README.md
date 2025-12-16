@@ -95,4 +95,3 @@ http://localhost:8080/api/results
 
 Juan Pablo Lopez
 Tesis Final de Grado – Aplicación para detección de daltonismo
->>>>>>> 751dec0b1faa49715aece0bc55e4ff8988238784
